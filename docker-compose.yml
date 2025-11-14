@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  catalog-service:
+    build: ./catalog
+    ports:
+      - "3001:3001"  
+    networks:
+      - dos-network
+
+  order-service:
+    build: ./order
+    ports:
+      - "3002:3002" 
+    networks:
+      - dos-network
+
+  frontend:
+    build: ./front
+    ports:
+      - "3006:3006"  
+    networks:
+      - dos-network
+    stdin_open: true  
+    tty: true         
+
+networks:
+  dos-network:
+    driver: bridge
